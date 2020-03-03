@@ -1,0 +1,70 @@
+<div class="container">
+    <h1>
+        Add Parking Data
+    </h1>
+    <form #addData="ngForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <label> Select Location</label>
+            <!-- <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter email"> -->
+            <select ngModel="selectedlocation" name="location">
+                <option *ngFor="let loc of locArr" [value]="loc"> 
+                    {{ loc }}
+                </option>
+              </select>
+            <button class="btn btn-primary ml-2 mt-2" (click)="openModal(location)">Add Location</button>
+          </div>
+          <div class="form-group">
+            <label>Select Slots</label>
+            <select ngModel="selectedslot" name="lslot">
+                <option *ngFor="let sl of slotArr" [value]="sl"> 
+                    {{ sl }}
+                </option>
+              </select>
+            <button class="btn btn-primary mt-2" (click)="openModal(slot)">Add Slot</button>
+          </div>
+          
+          <button type="submit" class="btn btn-primary" [disabled]="!addData.valid">Submit</button>
+    </form>
+
+
+   
+</div>
+<ng-template #location>
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">Add Location</h4>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+        <form #addlocation="ngForm" (ngSubmit)="onSubmitlocation(addlocation)">
+            <div class="form-group">
+                <label> Add Location</label>
+                <input type="text" class="form-control"  name="loc" [(ngModel)]="loc" placeholder="Location" required>
+                
+              </div>
+              
+              <button type="submit" class="btn btn-primary" [disabled]="!addlocation.valid">Submit</button>
+        </form>
+    </div>
+  </ng-template>
+
+  <ng-template #slot>
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">Add Slot</h4>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+    <form #addslot="ngForm" (ngSubmit)="onSubmitslot(addslot)">
+        <div class="form-group">
+            <label> Add Slot</label>
+            <input type="text" class="form-control" name="slot" [(ngModel)]="slott" placeholder="Slot" required>
+            
+          </div>
+          
+          <button type="submit" class="btn btn-primary" [disabled]="!addslot.valid">Submit</button>
+    </form>
+    </div>
+  </ng-template>
